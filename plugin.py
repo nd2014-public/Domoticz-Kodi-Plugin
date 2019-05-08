@@ -105,6 +105,7 @@ class BasePlugin:
             Domoticz.Device(Name="Source",  Unit=2, TypeName="Selector Switch", Switchtype=18, Image=12, Options=Options).Create()
             Domoticz.Device(Name="Volume",  Unit=3, Type=244, Subtype=73, Switchtype=7, Image=8).Create()
             Domoticz.Device(Name="Playing", Unit=4, Type=244, Subtype=73, Switchtype=7, Image=12).Create()
+            Domoticz.Device(Name="PlayingBoolean", Unit=5, TypeName="Switch", Image=12).Create()
             Domoticz.Log("Devices created.")
         if (1 in Devices):
             UpdateImage(1)
@@ -599,8 +600,10 @@ class BasePlugin:
         if (4 in Devices):
             if (self.playerState == 4) or (self.playerState == 5):
                 UpdateDevice(4, 2, str(self.percentComplete), TimedOut)
+                UpdateDevice(5, 1, str(1), TimedOut)
             else:
                 UpdateDevice(4, 0, str(self.percentComplete), TimedOut)
+                UpdateDevice(5, 0, str(0), TimedOut)
         return
 
     def ClearDevices(self):
